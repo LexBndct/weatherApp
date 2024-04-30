@@ -104,6 +104,29 @@ input {
   background-color: rgb(30 64 175);
 }
 
+#city-dropdown {
+  max-height: 50px;
+  height: 50px;
+}
+
+#city-dropdown::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+#city-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#city-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgb(29 78 216);
+}
+
+#city-dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(30 58 138);
+  background-color: rgb(30 64 175);
+}
+
 .hourly-item {
   flex: 0 0 auto;
   width: 80px;
