@@ -3,5 +3,5 @@
 
 #
 
-<a href="https://lexbndct.github.io/weatherApp/">Website Link</a>
+<a href="https://lexbndct.github.io/weatherApp/" target="_blank">Website Link</a>
 
