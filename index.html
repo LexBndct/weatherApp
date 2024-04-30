@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>alek weather</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" href="./output.css" />
+</head>
+
+<body class="h-full w-screen bg-blue-950">
+    <div  class="h-96 rounded-lg w-screen border-2">
+        <iframe class="w-full h-full"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7515546.356233362!2d111.11110493447454!3d-6.585126557052678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1714492368802!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+
+    <div class="flex flex-col bg-blue-900 py-2 px-5 mt-5 rounded-lg justify-center items-center h-96" class="mt-8">
+        <h2 class="text-xl font-bold">Pengendali Cuaca anjay mabar</h2>
+
+        <div class="flex justify-center items-center flex-col gap-5">
+            <div>
+                <input type="text" id="city" placeholder="Enter city" class="bg-blue-500 placeholder:text-white text-white font-bold rounded-lg border-2 border-white w-44" />
+            </div>
+
+            <div>
+                <ul class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                    <li>
+                        <select id="city-dropdown" class="bg-blue-500 placeholder:text-white text-white font-bold rounded-lg border-2 border-white w-44"></select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex gap-5 mt-5">
+            <button onclick="getWeather()" class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg">Search</button>
+            <button onclick="clearAll()"  class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg">Clear</button>
+        </div>
+
+        <div id="weather-show" class="hidden max-w-screen-sm sm:w-10 xl:w-96 absolute bg-blue-900 text-white py-1 px-3 rounded-lg">
+            <button onclick="closePopUp()" class="text-white font-bold bg-blue-800 py-1 px-3 rounded-lg">X</button>
+            <img id="weather-icon" alt="Weather Icon" />
+
+            <div id="temp-div"></div>
+
+            <div id="weather-info"></div>
+
+            <div id="hourly-forecast"></div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+
+    <!-- Flowbite -->
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>displayCityDropDown();</script>
+</body>
+
+<script> 
+    document.getElementById("copyright").innerHTML = `LexBndct x JakiSlow &copy; ${new Date().getFullYear()}`;</script>
+
+</html>
