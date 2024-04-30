@@ -13,81 +13,80 @@ function closePopUp(){
 }
 
 function getWeather() {
-    const showWeather = document.getElementById("weather-show")
-    showWeather.classList.remove("hidden")
-    const apiKey = "c4913cb6c26704953c47eb1566bc6df6";
-    const city = document.getElementById("city").value;
+  const showWeather = document.getElementById("weather-show");
+  showWeather.classList.remove("hidden");
+  const apiKey = "c4913cb6c26704953c47eb1566bc6df6";
+  const city = document.getElementById("city").value;
 
-    if (!city) {
-        alert("Enter a city brooo!");
-        return;
-    }
-    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+  if (!city) {
+    alert("Enter a city brooo!");
+    closePopUp();
+    return;
+  }
+  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
-    fetch(currentWeatherUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            displayWeather(data);
-        })
-        .catch((error) => {
-            console.error("Error kocak:", error);
-            alert("yg bener lah masukin kotanya kocak");
-        });
+  fetch(currentWeatherUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      displayWeather(data);
+    })
+    .catch((error) => {
+      console.error("Error kocak:", error);
+      alert("yg bener lah masukin kotanya kocak");
+    });
 
-    fetch(forecastUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            displayHourlyForecast(data.list);
-        })
-        .catch((error) => {
-            console.error("Error kocak:", error);
-        });
+  fetch(forecastUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      displayHourlyForecast(data.list);
+    })
+    .catch((error) => {
+      console.error("Error kocak:", error);
+    });
 }
 
 function displayCityDropDown() {
-    const apiKey = "c4913cb6c26704953c47eb1566bc6df6";
+  const apiKey = "c4913cb6c26704953c47eb1566bc6df6";
 
-    const cityNames = [
-        "Aceh",
-        "Bali",
-        "Banten",
-        "Bengkulu",
-        "Yogyakarta",
-        "Jakarta",
-        "Gorontalo",
-        "Jambi",
-        "Jawa Barat",
-        "Jawa Tengah",
-    ]
+  const cityNames = [
+    "Aceh",
+    "Bali",
+    "Banten",
+    "Bengkulu",
+    "Yogyakarta",
+    "Jakarta",
+    "Gorontalo",
+    "Jambi",
+    "Jawa Barat",
+    "Jawa Tengah",
+  ];
 
-    const cityUrls = cityNames.map(
-        () =>
-            `https://api.openweathermap.org/data/2.5/find?type=like&q=${city}&appid=${apiKey}`
-    );
+  const cityUrls = cityNames.map(
+    () =>
+      `https://api.openweathermap.org/data/2.5/find?type=like&q=${city}&appid=${apiKey}`
+  );
 
-    Promise.all(
-        cityUrls.map((cityUrl) =>
-            fetch(cityUrl)
-                .then((response) => response.json())
-                .then(() => {
-                    const cityDropDown = document.getElementById("city-dropdown");
-                    cityNames.map((name) => {
-                        const option = document.createElement("option");
-                        option.value = name;
-                        option.textContent = name;
-                        cityDropDown.appendChild(option);
-                    });
+  cityUrls.map((cityUrl) =>
+    fetch(cityUrl)
+      .then((response) => response.json())
+      .then(() => {
+        const cityDropDown = document.getElementById("city-dropdown");
+        cityNames.map((name) => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          cityDropDown.appendChild(option);
+        });
 
-                    cityDropDown.addEventListener("change", () => {
-                        document.getElementById("city").value = cityDropDown.value;
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error fetching city data:", error);
-                })
-        )
-    );
+        cityDropDown.addEventListener("change", () => {
+          document.getElementById("city").value = cityDropDown.value;
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching city data:", error);
+      })
+  );
 }
 
 function displayWeather(data) {
